@@ -14,16 +14,57 @@ namespace Barber_Shop
     public partial class customer_part : Form
     {
         Main_form m_form;
+        string connectstring = "data source=127.0.0.1;database=barbershop;user id=root;password=root;pooling=true;charset=utf8;";
+        MySqlConnection msc;
+        MySqlCommand command;
         public customer_part(Main_form m)
         {
             InitializeComponent();
+            msc = new MySqlConnection(connectstring);
             log_in.Checked = true;
             m_form = m;
         }
 
         private void m_submit_Click(object sender, EventArgs e)
         {
-
+            if (log_in.Checked)
+            {
+                string get_name = "select Name from barbershop.customer where Name='"+m_account.Text+"'";
+                command = msc.CreateCommand();
+                msc.Open();
+                command.CommandText = get_name;
+                string _name = (string)command.ExecuteScalar();
+                if (_name == null)
+                {
+                    Console.WriteLine("no");
+                }
+                else
+                {
+                    string get_pw = "select password from barbershop.customer where Name='" + m_account.Text + "'";
+                    command.CommandText = get_pw;
+                    string _pw= (string)command.ExecuteScalar();
+                    if (string.Equals(_pw,m_password.Text))
+                    {
+                        
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                //Console.WriteLine(_name);
+                msc.Close();
+            }
+            else
+            {
+                string str = "insert into customer(Name,password) values('" + m_account.Text +"','" + m_password.Text + "')";
+                //string str = "insert into customer(Name,password) values(" + m_account.Text + "," + m_password.Text + ");";
+                command = msc.CreateCommand();
+                msc.Open();
+                command.CommandText = str;
+                command.ExecuteNonQuery();
+                msc.Close();
+            }
         }
 
         private void log_in_CheckedChanged(object sender, EventArgs e)
