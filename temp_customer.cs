@@ -11,12 +11,12 @@ using MySql.Data.MySqlClient;
 
 namespace Barber_Shop
 {
-    public partial class customer_part : Form
+    public partial class temp_customer : Form
     {
         Main_form m_form;
         MySqlConnection msc;
         MySqlCommand command;
-        public customer_part(Main_form m, MySqlConnection msc)
+        public temp_customer(Main_form m, MySqlConnection msc)
         {
             InitializeComponent();
             this.msc = msc;
@@ -28,27 +28,27 @@ namespace Barber_Shop
         {
             if (log_in.Checked)
             {
-                string get_name = "select Name from barbershop.customer where Name='"+m_account.Text+"'";
+                string get_name = "select Name from barbershop.customer where Name='" + m_account.Text + "'";
                 command = msc.CreateCommand();
                 msc.Open();
                 command.CommandText = get_name;
                 string _name = (string)command.ExecuteScalar();
                 if (_name == null)
                 {
-                    Console.WriteLine("no");
+                    
                 }
                 else
                 {
                     string get_pw = "select password from barbershop.customer where Name='" + m_account.Text + "'";
                     command.CommandText = get_pw;
-                    string _pw= (string)command.ExecuteScalar();
-                    if (string.Equals(_pw,m_password.Text))
+                    string _pw = (string)command.ExecuteScalar();
+                    if (string.Equals(_pw, m_password.Text))
                     {
-                        
+
                     }
                     else
                     {
-                        
+
                     }
                 }
                 //Console.WriteLine(_name);
@@ -56,7 +56,7 @@ namespace Barber_Shop
             }
             else
             {
-                string str = "insert into customer(Name,password) values('" + m_account.Text +"','" + m_password.Text + "')";
+                string str = "insert into customer(Name,password) values('" + m_account.Text + "','" + m_password.Text + "')";
                 //string str = "insert into customer(Name,password) values(" + m_account.Text + "," + m_password.Text + ");";
                 command = msc.CreateCommand();
                 msc.Open();
@@ -68,7 +68,7 @@ namespace Barber_Shop
 
         private void log_in_CheckedChanged(object sender, EventArgs e)
         {
-            password_check.Visible=false;
+            password_check.Visible = false;
             pw_check_lb.Visible = false;
         }
 

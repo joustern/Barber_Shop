@@ -30,14 +30,14 @@ namespace Barber_Shop
 
         private void customer_Click(object sender, EventArgs e)
         {
-            customer_Form = new customer_part(this);
+            customer_Form = new customer_part(this,msc);
             this.Hide();
             customer_Form.Show();
         }
 
         private void shop_Click(object sender, EventArgs e)
         {
-            barber_Form = new Barber_part(this);
+            barber_Form = new Barber_part(this,msc);
             this.Hide();
             barber_Form.Show();
         }

@@ -14,10 +14,13 @@ namespace Barber_Shop
     public partial class Barber_part : Form
     {
         Main_form m_form;
-        public Barber_part(Main_form m)
+        MySqlConnection msc;
+        public Barber_part(Main_form m, MySqlConnection msc)
         {
             InitializeComponent();
             m_form = m;
+            this.msc = msc;
+            this.get_customer();
         }
 
         private void Barber_FormClosing(Object sender, FormClosingEventArgs e)
@@ -32,7 +35,20 @@ namespace Barber_Shop
             
             this.Close();
         }
-
-        
+        private void get_customer()
+        {
+            //msc.Open();
+            string sql = "SELECT Name, Telephone, vip_member, Gender, barber_id FROM barbershop.customer";
+            //MySqlCommand sc = new MySqlCommand(sql, msc);
+            MySqlDataAdapter sda = new MySqlDataAdapter();
+            sda.SelectCommand = new MySqlCommand(sql, msc);
+            DataSet dataSet1 = new DataSet();
+            sda.Fill(dataSet1);
+            this._customer.DataSource = dataSet1.Tables[0].DefaultView;
+            //this.dataGridView1.DataSource = dataSet1;
+            //dataGridView1.DataMember = "test";
+            msc.Close();
+            msc.Dispose();
+        }
     }
 }
