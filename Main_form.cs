@@ -13,7 +13,8 @@ namespace Barber_Shop
 {
     public partial class Main_form : Form
     {
-        customer_part customer_Form;
+        //customer_part customer_Form;
+        temp_customer temp_c;
         Barber_part barber_Form;
         string connectstring = "data source=127.0.0.1;database=barbershop;user id=root;password=root;pooling=true;charset=utf8;";
         MySqlConnection msc;
@@ -30,9 +31,15 @@ namespace Barber_Shop
 
         private void customer_Click(object sender, EventArgs e)
         {
-            customer_Form = new customer_part(this,msc);
+            temp_c = new temp_customer(this, msc);
             this.Hide();
-            customer_Form.Show();
+            if (temp_c.ShowDialog()==DialogResult.OK)
+            {
+                this.Hide();
+                customer_part customer_Form = new customer_part(this, msc,temp_c.get_account);
+                temp_c.Close();
+                customer_Form.Show();
+            }
         }
 
         private void shop_Click(object sender, EventArgs e)

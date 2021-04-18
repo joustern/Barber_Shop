@@ -70,6 +70,7 @@
             this.m_submit.Text = "submit";
             this.m_submit.UseMnemonic = false;
             this.m_submit.UseVisualStyleBackColor = true;
+            this.m_submit.Click += new System.EventHandler(this.m_submit_Click);
             // 
             // log_in
             // 
@@ -81,6 +82,7 @@
             this.log_in.TabStop = true;
             this.log_in.Text = "Log in";
             this.log_in.UseVisualStyleBackColor = true;
+            this.log_in.CheckedChanged += new System.EventHandler(this.log_in_CheckedChanged);
             // 
             // sign_up
             // 
@@ -92,6 +94,7 @@
             this.sign_up.TabStop = true;
             this.sign_up.Text = "Sign up";
             this.sign_up.UseVisualStyleBackColor = true;
+            this.sign_up.CheckedChanged += new System.EventHandler(this.sign_up_CheckedChanged);
             // 
             // account_lb
             // 
@@ -126,6 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 290);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(Temp_FormClosing);
             this.Controls.Add(this.pw_check_lb);
             this.Controls.Add(this.password_lb);
             this.Controls.Add(this.account_lb);

@@ -16,19 +16,21 @@ namespace Barber_Shop
         Main_form m_form;
         MySqlConnection msc;
         MySqlCommand command;
+        //public Boolean _log_in = false;
         public temp_customer(Main_form m, MySqlConnection msc)
         {
             InitializeComponent();
             this.msc = msc;
             log_in.Checked = true;
             m_form = m;
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void m_submit_Click(object sender, EventArgs e)
         {
             if (log_in.Checked)
             {
-                string get_name = "select Name from barbershop.customer where Name='" + m_account.Text + "'";
+                string get_name = "select customer_account from barbershop.customer where customer_account='" + m_account.Text + "'";
                 command = msc.CreateCommand();
                 msc.Open();
                 command.CommandText = get_name;
@@ -39,19 +41,20 @@ namespace Barber_Shop
                 }
                 else
                 {
-                    string get_pw = "select password from barbershop.customer where Name='" + m_account.Text + "'";
+                    string get_pw = "select password from barbershop.customer where customer_account='" + m_account.Text + "'";
                     command.CommandText = get_pw;
                     string _pw = (string)command.ExecuteScalar();
                     if (string.Equals(_pw, m_password.Text))
                     {
+                        this.DialogResult = DialogResult.OK;
 
+                        this.Close();
                     }
                     else
                     {
 
                     }
                 }
-                //Console.WriteLine(_name);
                 msc.Close();
             }
             else
@@ -77,10 +80,17 @@ namespace Barber_Shop
             password_check.Visible = true;
             pw_check_lb.Visible = true;
         }
-        private void Customer_FormClosing(Object sender, FormClosingEventArgs e)
+        private void Temp_FormClosing(Object sender, FormClosingEventArgs e)
         {
             m_form.Show();
 
+        }
+        public string get_account
+        {
+            get
+            {
+                return m_account.Text;
+            }
         }
     }
 }
