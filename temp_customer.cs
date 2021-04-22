@@ -28,16 +28,17 @@ namespace Barber_Shop
 
         private void m_submit_Click(object sender, EventArgs e)
         {
+            string get_name = "select customer_account from barbershop.customer where customer_account='" + m_account.Text + "'";
+            command = msc.CreateCommand();
+            msc.Open();
+            command.CommandText = get_name;
+            string _account = (string)command.ExecuteScalar();
             if (log_in.Checked)
             {
-                string get_name = "select customer_account from barbershop.customer where customer_account='" + m_account.Text + "'";
-                command = msc.CreateCommand();
-                msc.Open();
-                command.CommandText = get_name;
-                string _name = (string)command.ExecuteScalar();
-                if (_name == null)
+                if (_account == null)
                 {
-                    
+                    Alert_form _alert = new Alert_form();
+                    _alert.Show();
                 }
                 else
                 {
@@ -52,19 +53,47 @@ namespace Barber_Shop
                     }
                     else
                     {
-
+                        Alert_form _alert = new Alert_form();
+                        _alert.Show();
                     }
                 }
                 msc.Close();
             }
             else
             {
-                string str = "insert into customer(Name,password) values('" + m_account.Text + "','" + m_password.Text + "')";
+                if (_account == null)
+                {
+                    if (string.Equals(m_password.Text, password_check.Text))
+                    {
+                        if (m_name.Text != null)
+                        {
+                            string add_account = "insert into customer(customer_account,Name,password,vip_member) values('"+m_account.Text+"','" + m_name.Text + "','" + m_password.Text + "',false)";
+                            command.CommandText = add_account;
+                            command.ExecuteNonQuery();
+                            msc.Close();
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            Alert_form _alert = new Alert_form();
+                            _alert.Show();
+                        }
+                    }
+                    else
+                    {
+                        Alert_form _alert = new Alert_form();
+                        _alert.Show();
+                    }
+                }
+                else
+                {
+                    Alert_form _alert = new Alert_form();
+                    _alert.Show();
+                }
+                //string str = "insert into customer(Name,password) values('" + m_account.Text + "','" + m_password.Text + "')";
                 //string str = "insert into customer(Name,password) values(" + m_account.Text + "," + m_password.Text + ");";
-                command = msc.CreateCommand();
-                msc.Open();
-                command.CommandText = str;
-                command.ExecuteNonQuery();
+                
                 msc.Close();
             }
         }
@@ -73,12 +102,16 @@ namespace Barber_Shop
         {
             password_check.Visible = false;
             pw_check_lb.Visible = false;
+            name_lb.Visible = false;
+            m_name.Visible = false;
         }
 
         private void sign_up_CheckedChanged(object sender, EventArgs e)
         {
             password_check.Visible = true;
             pw_check_lb.Visible = true;
+            name_lb.Visible = true;
+            m_name.Visible = true;
         }
         private void Temp_FormClosing(Object sender, FormClosingEventArgs e)
         {

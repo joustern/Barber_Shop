@@ -31,18 +31,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage = new System.Windows.Forms.TabControl();
             this.barber_browse = new System.Windows.Forms.TabPage();
+            this._barber = new System.Windows.Forms.DataGridView();
             this.transaction_history = new System.Windows.Forms.TabPage();
             this._history = new System.Windows.Forms.DataGridView();
             this.customer_browse = new System.Windows.Forms.TabPage();
             this._customer = new System.Windows.Forms.DataGridView();
-            this._barber = new System.Windows.Forms.DataGridView();
             this.tabPage.SuspendLayout();
             this.barber_browse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._barber)).BeginInit();
             this.transaction_history.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._history)).BeginInit();
             this.customer_browse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._customer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._barber)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -77,6 +77,16 @@
             this.barber_browse.Text = "barber";
             this.barber_browse.UseVisualStyleBackColor = true;
             // 
+            // _barber
+            // 
+            this._barber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._barber.Location = new System.Drawing.Point(0, 0);
+            this._barber.Name = "_barber";
+            this._barber.RowTemplate.Height = 24;
+            this._barber.Size = new System.Drawing.Size(768, 361);
+            this._barber.TabIndex = 0;
+            this._barber.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._barber_CellClick);
+            // 
             // transaction_history
             // 
             this.transaction_history.Controls.Add(this._history);
@@ -94,7 +104,7 @@
             this._history.Location = new System.Drawing.Point(0, 0);
             this._history.Name = "_history";
             this._history.RowTemplate.Height = 24;
-            this._history.Size = new System.Drawing.Size(765, 358);
+            this._history.Size = new System.Drawing.Size(768, 361);
             this._history.TabIndex = 0;
             // 
             // customer_browse
@@ -110,20 +120,11 @@
             // _customer
             // 
             this._customer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._customer.Location = new System.Drawing.Point(3, 3);
+            this._customer.Location = new System.Drawing.Point(0, 0);
             this._customer.Name = "_customer";
             this._customer.RowTemplate.Height = 24;
-            this._customer.Size = new System.Drawing.Size(762, 355);
+            this._customer.Size = new System.Drawing.Size(768, 361);
             this._customer.TabIndex = 0;
-            // 
-            // _barber
-            // 
-            this._barber.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._barber.Location = new System.Drawing.Point(6, 6);
-            this._barber.Name = "_barber";
-            this._barber.RowTemplate.Height = 24;
-            this._barber.Size = new System.Drawing.Size(756, 349);
-            this._barber.TabIndex = 0;
             // 
             // Barber_part
             // 
@@ -137,11 +138,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Barber_FormClosing);
             this.tabPage.ResumeLayout(false);
             this.barber_browse.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._barber)).EndInit();
             this.transaction_history.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._history)).EndInit();
             this.customer_browse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._customer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._barber)).EndInit();
             this.ResumeLayout(false);
 
         }

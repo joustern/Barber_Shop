@@ -21,6 +21,8 @@ namespace Barber_Shop
             m_form = m;
             this.msc = msc;
             this.get_customer();
+            this.get_history();
+            this.get_barber();
         }
 
         private void Barber_FormClosing(Object sender, FormClosingEventArgs e)
@@ -38,17 +40,49 @@ namespace Barber_Shop
         private void get_customer()
         {
             //msc.Open();
-            string sql = "SELECT Name, Telephone, vip_member, Gender, barber_id FROM barbershop.customer";
+            string sql = "SELECT customer_id, Name, Telephone, vip_member, Gender, barber_id FROM barbershop.customer";
             //MySqlCommand sc = new MySqlCommand(sql, msc);
             MySqlDataAdapter sda = new MySqlDataAdapter();
             sda.SelectCommand = new MySqlCommand(sql, msc);
-            DataSet dataSet1 = new DataSet();
-            sda.Fill(dataSet1);
-            this._customer.DataSource = dataSet1.Tables[0].DefaultView;
-            //this.dataGridView1.DataSource = dataSet1;
-            //dataGridView1.DataMember = "test";
+            DataTable dt1 = new DataTable();
+            sda.Fill(dt1);
+            this._customer.DataSource = dt1.DefaultView;
             msc.Close();
             msc.Dispose();
+        }
+        private void get_history()
+        {
+            string sql = "SELECT * FROM barbershop.history";
+            //MySqlCommand sc = new MySqlCommand(sql, msc);
+            MySqlDataAdapter sda = new MySqlDataAdapter();
+            sda.SelectCommand = new MySqlCommand(sql, msc);
+            DataTable dt1 = new DataTable();
+            sda.Fill(dt1);
+            this._history.DataSource = dt1.DefaultView;
+            msc.Close();
+            msc.Dispose();
+        }
+        private void get_barber()
+        {
+            string sql = "SELECT * FROM barbershop.barber";
+            //MySqlCommand sc = new MySqlCommand(sql, msc);
+            MySqlDataAdapter sda = new MySqlDataAdapter();
+            sda.SelectCommand = new MySqlCommand(sql, msc);
+            DataTable dt1 = new DataTable();
+            sda.Fill(dt1);
+            this._barber.DataSource = dt1.DefaultView;
+            msc.Close();
+            msc.Dispose();
+        }
+
+        private void _barber_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = _barber.CurrentCell.RowIndex;
+            int j = _barber.CurrentCell.ColumnIndex;
+            string value = _barber.Rows[i].Cells[j].Value.ToString();
+            Console.WriteLine(value);
+            //Console.WriteLine(e.RowIndex);
+            //Console.WriteLine(e.ColumnIndex);
         }
     }
 }

@@ -37,6 +37,8 @@
             this.account_lb = new System.Windows.Forms.Label();
             this.password_lb = new System.Windows.Forms.Label();
             this.pw_check_lb = new System.Windows.Forms.Label();
+            this.name_lb = new System.Windows.Forms.Label();
+            this.m_name = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // m_account
@@ -63,7 +65,7 @@
             // 
             // m_submit
             // 
-            this.m_submit.Location = new System.Drawing.Point(118, 150);
+            this.m_submit.Location = new System.Drawing.Point(118, 168);
             this.m_submit.Name = "m_submit";
             this.m_submit.Size = new System.Drawing.Size(75, 23);
             this.m_submit.TabIndex = 3;
@@ -124,12 +126,29 @@
             this.pw_check_lb.Text = "repeat password";
             this.pw_check_lb.Visible = false;
             // 
+            // name_lb
+            // 
+            this.name_lb.AutoSize = true;
+            this.name_lb.Location = new System.Drawing.Point(29, 142);
+            this.name_lb.Name = "name_lb";
+            this.name_lb.Size = new System.Drawing.Size(32, 12);
+            this.name_lb.TabIndex = 9;
+            this.name_lb.Text = "Name";
+            // 
+            // m_name
+            // 
+            this.m_name.Location = new System.Drawing.Point(118, 132);
+            this.m_name.Name = "m_name";
+            this.m_name.Size = new System.Drawing.Size(100, 22);
+            this.m_name.TabIndex = 10;
+            // 
             // temp_customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 290);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(Temp_FormClosing);
+            this.Controls.Add(this.m_name);
+            this.Controls.Add(this.name_lb);
             this.Controls.Add(this.pw_check_lb);
             this.Controls.Add(this.password_lb);
             this.Controls.Add(this.account_lb);
@@ -141,6 +160,7 @@
             this.Controls.Add(this.m_account);
             this.Name = "temp_customer";
             this.Text = "account";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Temp_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +175,8 @@
         private System.Windows.Forms.Label password_lb;
         private System.Windows.Forms.Label pw_check_lb;
         #endregion
+
+        private System.Windows.Forms.Label name_lb;
+        private System.Windows.Forms.TextBox m_name;
     }
 }
