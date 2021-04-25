@@ -62,6 +62,12 @@
     <Compile Include="Barber_part.Designer.cs">
       <DependentUpon>Barber_part.cs</DependentUpon>
     </Compile>
+    <Compile Include="Barber_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Barber_View.Designer.cs">
+      <DependentUpon>Barber_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="customer_part.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barber_part.resx">
       <DependentUpon>Barber_part.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Barber_View.resx">
+      <DependentUpon>Barber_View.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="customer_part.resx">
       <DependentUpon>customer_part.cs</DependentUpon>

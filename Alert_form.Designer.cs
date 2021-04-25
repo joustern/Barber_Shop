@@ -37,9 +37,9 @@
             this.label1.Font = new System.Drawing.Font("新細明體", 12F);
             this.label1.Location = new System.Drawing.Point(12, 104);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 16);
+            this.label1.Text = "O";
+            this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Incorrect account or password";
             // 
             // Alert_form
             // 

@@ -16,5 +16,10 @@ namespace Barber_Shop
         {
             InitializeComponent();
         }
+        public Alert_form(string s)
+        {
+            label1.Text = s;
+            InitializeComponent();
+        }
     }
 }

@@ -33,15 +33,14 @@ namespace Barber_Shop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            m_form.Show();
+            //m_form.Show();
             
-            this.Close();
+            //this.Close();
         }
-        private void get_customer()
+        public void get_customer()
         {
             //msc.Open();
-            string sql = "SELECT customer_id, Name, Telephone, vip_member, Gender, barber_id FROM barbershop.customer";
-            //MySqlCommand sc = new MySqlCommand(sql, msc);
+            string sql = "SELECT * FROM barbershop.customer_view";
             MySqlDataAdapter sda = new MySqlDataAdapter();
             sda.SelectCommand = new MySqlCommand(sql, msc);
             DataTable dt1 = new DataTable();
@@ -49,8 +48,9 @@ namespace Barber_Shop
             this._customer.DataSource = dt1.DefaultView;
             msc.Close();
             msc.Dispose();
+            _customer.ReadOnly = true;
         }
-        private void get_history()
+        public void get_history()
         {
             string sql = "SELECT * FROM barbershop.history";
             //MySqlCommand sc = new MySqlCommand(sql, msc);
@@ -61,8 +61,9 @@ namespace Barber_Shop
             this._history.DataSource = dt1.DefaultView;
             msc.Close();
             msc.Dispose();
+            _history.ReadOnly = true;
         }
-        private void get_barber()
+        public void get_barber()
         {
             string sql = "SELECT * FROM barbershop.barber";
             //MySqlCommand sc = new MySqlCommand(sql, msc);
@@ -73,16 +74,25 @@ namespace Barber_Shop
             this._barber.DataSource = dt1.DefaultView;
             msc.Close();
             msc.Dispose();
+            _barber.ReadOnly = true;
         }
 
         private void _barber_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = _barber.CurrentCell.RowIndex;
-            int j = _barber.CurrentCell.ColumnIndex;
-            string value = _barber.Rows[i].Cells[j].Value.ToString();
-            Console.WriteLine(value);
-            //Console.WriteLine(e.RowIndex);
-            //Console.WriteLine(e.ColumnIndex);
+            //int j = _barber.CurrentCell.ColumnIndex;
+            string value = _barber.Rows[i].Cells[0].Value.ToString();
+            //Console.WriteLine(value);
+            try
+            {
+                Barber_View b = new Barber_View(int.Parse(value), msc,this);
+                b.Show();
+                get_barber();
+            }
+            catch
+            {
+
+            }
         }
     }
 }
