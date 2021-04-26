@@ -18,8 +18,8 @@ namespace Barber_Shop
         }
         public Alert_form(string s)
         {
-            label1.Text = s;
             InitializeComponent();
+            label1.Text = s;
         }
     }
 }

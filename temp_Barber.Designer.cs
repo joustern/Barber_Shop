@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._name = new System.Windows.Forms.TextBox();
+            this._password = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -61,33 +61,35 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // _name
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 3;
+            this._name.Location = new System.Drawing.Point(147, 89);
+            this._name.Name = "_name";
+            this._name.Size = new System.Drawing.Size(100, 22);
+            this._name.TabIndex = 3;
             // 
-            // textBox2
+            // _password
             // 
-            this.textBox2.Location = new System.Drawing.Point(147, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 4;
+            this._password.Location = new System.Drawing.Point(147, 123);
+            this._password.Name = "_password";
+            this._password.Size = new System.Drawing.Size(100, 22);
+            this._password.TabIndex = 4;
             // 
             // temp_Barber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 290);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._password);
+            this.Controls.Add(this._name);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "temp_Barber";
             this.Text = "temp_Barber";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Temp_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,7 +100,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox _name;
+        private System.Windows.Forms.TextBox _password;
     }
 }

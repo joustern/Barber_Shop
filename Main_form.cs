@@ -15,6 +15,7 @@ namespace Barber_Shop
     {
         //customer_part customer_Form;
         temp_customer temp_c;
+        temp_Barber temp_b;
         Barber_part barber_Form;
         string connectstring = "data source=127.0.0.1;database=barbershop;user id=root;password=root;pooling=true;charset=utf8;";
         MySqlConnection msc;
@@ -44,9 +45,16 @@ namespace Barber_Shop
 
         private void shop_Click(object sender, EventArgs e)
         {
-            barber_Form = new Barber_part(this,msc);
+            temp_b = new temp_Barber(this, msc);
             this.Hide();
-            barber_Form.Show();
+            if (temp_b.ShowDialog() == DialogResult.OK)
+            {
+                this.Hide();
+                barber_Form = new Barber_part(this,msc);
+                temp_b.Close();
+                barber_Form.Show();
+            }
+            
         }
     }
 }

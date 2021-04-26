@@ -37,8 +37,9 @@ namespace Barber_Shop
             {
                 if (_account == null)
                 {
-                    Alert_form _alert = new Alert_form();
+                    Alert_form _alert = new Alert_form("incorrect account");
                     _alert.Show();
+                    msc.Close();
                 }
                 else
                 {
@@ -48,16 +49,16 @@ namespace Barber_Shop
                     if (string.Equals(_pw, m_password.Text))
                     {
                         this.DialogResult = DialogResult.OK;
-
+                        msc.Close();
                         this.Close();
                     }
                     else
                     {
-                        Alert_form _alert = new Alert_form();
+                        Alert_form _alert = new Alert_form("incorrect password");
                         _alert.Show();
+                        msc.Close();
                     }
                 }
-                msc.Close();
             }
             else
             {
@@ -78,22 +79,22 @@ namespace Barber_Shop
                         {
                             Alert_form _alert = new Alert_form();
                             _alert.Show();
+                            msc.Close();
                         }
                     }
                     else
                     {
                         Alert_form _alert = new Alert_form();
                         _alert.Show();
+                        msc.Close();
                     }
                 }
                 else
                 {
                     Alert_form _alert = new Alert_form();
                     _alert.Show();
-                }
-                //string str = "insert into customer(Name,password) values('" + m_account.Text + "','" + m_password.Text + "')";
-                //string str = "insert into customer(Name,password) values(" + m_account.Text + "," + m_password.Text + ");";
-                
+                    msc.Close();
+                }                
                 msc.Close();
             }
         }
