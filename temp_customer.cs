@@ -24,6 +24,7 @@ namespace Barber_Shop
             log_in.Checked = true;
             m_form = m;
             this.DialogResult = DialogResult.Cancel;
+            m_name.Text = null;
         }
 
         private void m_submit_Click(object sender, EventArgs e)
@@ -37,9 +38,7 @@ namespace Barber_Shop
             {
                 if (_account == null)
                 {
-                    Alert_form _alert = new Alert_form("incorrect account");
-                    _alert.Show();
-                    msc.Close();
+                    MessageBox.Show("incorrect account");
                 }
                 else
                 {
@@ -54,9 +53,8 @@ namespace Barber_Shop
                     }
                     else
                     {
-                        Alert_form _alert = new Alert_form("incorrect password");
-                        _alert.Show();
-                        msc.Close();
+                        MessageBox.Show("incorrect password");
+                        
                     }
                 }
             }
@@ -66,7 +64,7 @@ namespace Barber_Shop
                 {
                     if (string.Equals(m_password.Text, password_check.Text))
                     {
-                        if (m_name.Text != null)
+                        if (!String.IsNullOrEmpty(m_name.Text))
                         {
                             string add_account = "insert into customer(customer_account,Name,password,vip_member) values('"+m_account.Text+"','" + m_name.Text + "','" + m_password.Text + "',false)";
                             command.CommandText = add_account;
@@ -77,26 +75,20 @@ namespace Barber_Shop
                         }
                         else
                         {
-                            Alert_form _alert = new Alert_form();
-                            _alert.Show();
-                            msc.Close();
+                            MessageBox.Show("enter your name");
                         }
                     }
                     else
                     {
-                        Alert_form _alert = new Alert_form();
-                        _alert.Show();
-                        msc.Close();
+                        MessageBox.Show("password must be equal");
                     }
                 }
                 else
                 {
-                    Alert_form _alert = new Alert_form();
-                    _alert.Show();
-                    msc.Close();
+                    MessageBox.Show("account has existed");
                 }                
-                msc.Close();
             }
+            msc.Close();
         }
 
         private void log_in_CheckedChanged(object sender, EventArgs e)

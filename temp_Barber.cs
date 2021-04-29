@@ -30,43 +30,31 @@ namespace Barber_Shop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (_name.Text==null)
+            msc.Open();
+            string get_admin = "select admin_name from admin";
+            command = msc.CreateCommand();
+            command.CommandText = get_admin;
+            string _account = (string)command.ExecuteScalar();
+            if (_account == _name.Text)
             {
-                Alert_form _alert = new Alert_form("enter account");
-                _alert.Show();
-            }
-            else
-            {
-                string get_admin = "select admin_name from admin";
-                command = msc.CreateCommand();
-                msc.Open();
-                command.CommandText = get_admin;
-                string _account = (string)command.ExecuteScalar();
-                if (_account == _name.Text)
+                string get_pw = "select admin_pw from admin";
+                command.CommandText = get_pw;
+                string _pw = (string)command.ExecuteScalar();
+                if (_pw == _password.Text)
                 {
-                    string get_pw = "select admin_pw from admin";
-                    command.CommandText = get_pw;
-                    string _pw= (string)command.ExecuteScalar();
-                    if (_pw == _password.Text)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        msc.Close();
-                        this.Close();
-                    }
-                    else
-                    {
-                        Alert_form _alert = new Alert_form("incorrect password");
-                        _alert.Show();
-                        msc.Close();
-                    }
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
-                    Alert_form _alert = new Alert_form("incorrect account");
-                    _alert.Show();
-                    msc.Close();
+                    MessageBox.Show("incorrect password");
                 }
             }
+            else
+            {
+                MessageBox.Show("incorrect account");
+            }
+            msc.Close();
         }
         private void Temp_FormClosing(Object sender, FormClosingEventArgs e)
         {
