@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_barber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_barber.Designer.cs">
+      <DependentUpon>Add_barber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Barber_part.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     <Compile Include="temp_customer.Designer.cs">
       <DependentUpon>temp_customer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_barber.resx">
+      <DependentUpon>Add_barber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Barber_part.resx">
       <DependentUpon>Barber_part.cs</DependentUpon>
     </EmbeddedResource>

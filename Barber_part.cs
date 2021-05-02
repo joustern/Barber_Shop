@@ -33,7 +33,8 @@ namespace Barber_Shop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Add_barber new_barber = new Add_barber(msc);
+            new_barber.Show();
         }
         public void get_customer()
         {
